@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace PromotionRuleEngine.Core.Manager
 {
+    /// <summary>
+    /// Manager class for calculating total price after promotions being applied.
+    /// </summary>
     public class PromotionManager : IPromotionManager
     {
         private List<Promotion> promotions;
@@ -14,11 +17,21 @@ namespace PromotionRuleEngine.Core.Manager
             this.promotions = new List<Promotion>();
         }
 
+        /// <summary>
+        /// Add promotions to the list.
+        /// </summary>
+        /// <param name="products"></param>
+        /// <param name="price"></param>
         public void AddPromotions(Dictionary<Product, int> products, decimal price)
         {
             this.promotions.Add(new Promotion() { PromoProduct = products, PromoPrice = price });
         }
 
+        /// <summary>
+        /// Calculate cart amount after applying the promotion.
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <returns></returns>
         public decimal CalculateDiscount(ICartManager cart)
         {
             var counter = 0;

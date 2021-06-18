@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace PromotionRuleEngine.Core.Manager
 {
+    /// <summary>
+    /// Manager class for Products
+    /// </summary>
     public class ProductManager : IProductManager
     {
         private List<Product> products;

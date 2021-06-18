@@ -14,5 +14,7 @@ namespace PromotionRuleEngine.Core.Manager.Interfaces
         int GetTotalCartItems();
 
         bool AreProductsAvailableinCartforPromo(Dictionary<Product, int> product);
+
+        List<Product> GetUniqueItemsfromCart();
     }
 }

@@ -1,12 +1,13 @@
 ﻿using PromotionRuleEngine.Core.Manager.Interfaces;
 using PromotionRuleEngine.Core.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace PromotionRuleEngine.Core.Manager
 {
+    /// <summary>
+    /// Manager class for Cart items
+    /// </summary>
     public class CartManager : ICartManager
     {
         private Dictionary<Product, int> cartItems;
@@ -16,6 +17,11 @@ namespace PromotionRuleEngine.Core.Manager
             this.cartItems = new Dictionary<Product, int>();
         }
 
+        /// <summary>
+        /// Add items to cart
+        /// </summary>
+        /// <param name="product"></param>
+        /// <param name="quantity"></param>
         public void AddCartItems(Product product, int quantity)
         {
             if (quantity > 0)
@@ -31,11 +37,19 @@ namespace PromotionRuleEngine.Core.Manager
             }
         }
 
+        /// <summary>
+        /// Get All items in cart 
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<Product, int> GetCartItems()
         {
             return this.cartItems;
         }
 
+        /// <summary>
+        /// Get sum of total cart value without promotions
+        /// </summary>
+        /// <returns></returns>
         public int GetTotalCartItems()
         {
             var count = 0;
@@ -46,6 +60,10 @@ namespace PromotionRuleEngine.Core.Manager
             return count;
         }
 
+        /// <summary>
+        /// Added for Unit testing to return cart object.
+        /// </summary>
+        /// <returns></returns>
         public ICartManager Clone()
         {
             var cart = new CartManager();
@@ -56,25 +74,24 @@ namespace PromotionRuleEngine.Core.Manager
             return cart;
         }
 
+        /// <summary>
+        /// Method to check if all products in cart are available in a specific promotion
+        /// </summary>
+        /// <param name="products"></param>
+        /// <returns></returns>
         public bool AreProductsAvailableinCartforPromo(Dictionary<Product, int> products)
         {
-            var areProductsAvailable = false;
             var cartItemsList = this.GetUniqueItemsfromCart();
             var promoproducts = products.Keys.ToList();
 
-            areProductsAvailable = promoproducts.Intersect(cartItemsList).Count() == promoproducts.Count();
-
-            //foreach (var prod in products)
-            //{
-            //    if (cartItemsList.Any(c => c.Sku == prod.Key.Sku))
-            //    {
-            //        areProductsAvailable = true;
-            //    }
-            //}
-
+            bool areProductsAvailable = promoproducts.Intersect(cartItemsList).Count() == promoproducts.Count();
             return areProductsAvailable;
         }
 
+        /// <summary>
+        /// Fetch unique items from cart
+        /// </summary>
+        /// <returns></returns>
         public List<Product> GetUniqueItemsfromCart()
         {
             var cartItemsList = new List<Product>();
