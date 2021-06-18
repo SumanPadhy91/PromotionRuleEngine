@@ -32,20 +32,20 @@ namespace RuleEngine.Tests
             productManager.AddProduct("C", 20);
             productManager.AddProduct("D", 15);
 
-            Dictionary<Product, int> dict1 = new Dictionary<Product, int>();
-            Dictionary<Product, int> dict2 = new Dictionary<Product, int>();
-            Dictionary<Product, int> dict3 = new Dictionary<Product, int>();
+            Dictionary<Product, int> dictCombo = new Dictionary<Product, int>();
+            Dictionary<Product, int> dictA = new Dictionary<Product, int>();
+            Dictionary<Product, int> dictB = new Dictionary<Product, int>();
 
             var products = this.productManager.GetAllProducts();
 
-            dict1.Add(products.Where(c => c.Sku == "C").FirstOrDefault(), 1);
-            dict1.Add(products.Where(c => c.Sku == "D").FirstOrDefault(), 1);
-            dict2.Add(products.Where(c => c.Sku == "A").FirstOrDefault(), 3);
-            dict3.Add(products.Where(c => c.Sku == "B").FirstOrDefault(), 2);
+            dictCombo.Add(products.Where(c => c.Sku == "C").FirstOrDefault(), 1);
+            dictCombo.Add(products.Where(c => c.Sku == "D").FirstOrDefault(), 1);
+            dictA.Add(products.Where(c => c.Sku == "A").FirstOrDefault(), 3);
+            dictB.Add(products.Where(c => c.Sku == "B").FirstOrDefault(), 2);
 
-            promotionManager.AddPromotions(dict1, 30);
-            promotionManager.AddPromotions(dict2, 130);
-            promotionManager.AddPromotions(dict3, 45);
+            promotionManager.AddPromotions(dictCombo, 30);
+            promotionManager.AddPromotions(dictA, 130);
+            promotionManager.AddPromotions(dictB, 45);
         }
 
         [Fact]
@@ -73,7 +73,15 @@ namespace RuleEngine.Tests
         }
 
         [Theory]
+        [InlineData(0, 0, 0, 0, 0)]
+        [InlineData(1, 0, 0, 0, 50)]
+        [InlineData(0, 1, 0, 0, 30)]
+        [InlineData(0, 0, 1, 0, 20)]
+        [InlineData(0, 0, 0, 1, 15)]
+        [InlineData(1, 1, 0, 0, 80)]
         [InlineData(1, 1, 1, 0, 100)]
+        [InlineData(1, 1, 1, 1, 110)]
+        [InlineData(3, 2, 1, 1, 205)]
         [InlineData(5, 5, 1, 0, 370)]
         [InlineData(3, 5, 1, 1, 280)]
         public void VerifyCartValue(object valueA, object valueB, object valueC, object valueD, object expected)

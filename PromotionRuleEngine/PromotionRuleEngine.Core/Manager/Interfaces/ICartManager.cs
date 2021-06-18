@@ -12,5 +12,7 @@ namespace PromotionRuleEngine.Core.Manager.Interfaces
         ICartManager Clone();
 
         int GetTotalCartItems();
+
+        bool AreProductsAvailableinCartforPromo(Dictionary<Product, int> product);
     }
 }

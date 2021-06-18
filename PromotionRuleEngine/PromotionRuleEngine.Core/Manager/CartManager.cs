@@ -2,6 +2,7 @@
 using PromotionRuleEngine.Core.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace PromotionRuleEngine.Core.Manager
@@ -17,13 +18,16 @@ namespace PromotionRuleEngine.Core.Manager
 
         public void AddCartItems(Product product, int quantity)
         {
-            if (this.cartItems.ContainsKey(product))
+            if (quantity > 0)
             {
-                this.cartItems[product] += quantity;
-            }
-            else
-            {
-                this.cartItems.Add(product, quantity);
+                if (this.cartItems.ContainsKey(product))
+                {
+                    this.cartItems[product] += quantity;
+                }
+                else
+                {
+                    this.cartItems.Add(product, quantity);
+                }
             }
         }
 
@@ -50,6 +54,38 @@ namespace PromotionRuleEngine.Core.Manager
                 cart.cartItems.Add(item.Key, item.Value);
             }
             return cart;
+        }
+
+        public bool AreProductsAvailableinCartforPromo(Dictionary<Product, int> products)
+        {
+            var areProductsAvailable = false;
+            var cartItemsList = this.GetUniqueItemsfromCart();
+            var promoproducts = products.Keys.ToList();
+
+            areProductsAvailable = promoproducts.Intersect(cartItemsList).Count() == promoproducts.Count();
+
+            //foreach (var prod in products)
+            //{
+            //    if (cartItemsList.Any(c => c.Sku == prod.Key.Sku))
+            //    {
+            //        areProductsAvailable = true;
+            //    }
+            //}
+
+            return areProductsAvailable;
+        }
+
+        public List<Product> GetUniqueItemsfromCart()
+        {
+            var cartItemsList = new List<Product>();
+            foreach(var item in this.cartItems)
+            {
+                if(item.Value > 0)
+                {
+                    cartItemsList.Add(item.Key);
+                }
+            }
+            return cartItemsList;
         }
     }
 }
