@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PromotionRuleEngine.Core.Manager.Interfaces
 {
-    public interface IPromotionEngine
+    public interface IPromotionManager
     {
         void AddPromotions(Dictionary<Product, int> products, decimal price);
 
