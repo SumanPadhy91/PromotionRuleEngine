@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromotionRuleEngine.Core", "PromotionRuleEngine.Core\PromotionRuleEngine.Core.csproj", "{43A9E76C-07D6-4658-BC85-6684EFE8094C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuleEngine.Tests", "RuleEngine.Tests\RuleEngine.Tests.csproj", "{2B8FF2DA-9F41-44E1-B012-2D565E0D1E7C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43A9E76C-07D6-4658-BC85-6684EFE8094C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43A9E76C-07D6-4658-BC85-6684EFE8094C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43A9E76C-07D6-4658-BC85-6684EFE8094C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43A9E76C-07D6-4658-BC85-6684EFE8094C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B8FF2DA-9F41-44E1-B012-2D565E0D1E7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B8FF2DA-9F41-44E1-B012-2D565E0D1E7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B8FF2DA-9F41-44E1-B012-2D565E0D1E7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B8FF2DA-9F41-44E1-B012-2D565E0D1E7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {19EE556F-6EB5-47FC-95E1-BB5AFEFA7285}
+	EndGlobalSection
+EndGlobal
